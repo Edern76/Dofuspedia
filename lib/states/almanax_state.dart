@@ -8,6 +8,8 @@ import 'package:intl/intl.dart';
 
 class AlmanaxState extends State<AlmanaxPage> {
   final AlmanaxSource _almanaxSource = GetIt.instance<AlmanaxSource>();
+  static const double _PADDING_TITLE = 5.0;
+  static const double _PADDING_BOTTOM = 8.0;
 
   DateTime _dateAlmanax = DateTime.now();
 
@@ -92,46 +94,95 @@ class AlmanaxState extends State<AlmanaxPage> {
       Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text("Offrande du jour",
-                  style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.grey.withOpacity(0.8)
-                  )
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: RoundedImage(
-                  size: 75,
-                  image: Image.network(
-                      entry.tribute.item.imageUrls.getImageUrl("hd")!,
-                      fit: BoxFit.contain
-                  ),
-                  borderRadius: 10,
-                )
-              )
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Flexible(child:
-                Text("${entry.tribute.quantity} x ${entry.tribute.item.name}",
-                  style: const TextStyle(
-                    fontSize: 24,
-                    color: Colors.black
-                  ),
-                  textAlign: TextAlign.center,
+          Card(
+            child: Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(_PADDING_TITLE),
+                      child: Text("Offrande du jour",
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.grey.withOpacity(0.8)
+                          )
+                      ),
+                    ),
+                  ],
                 ),
-              )
-            ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: RoundedImage(
+                          size: 75,
+                          image: Image.network(
+                              entry.tribute.item.imageUrls.getImageUrl("hd")!,
+                              fit: BoxFit.contain
+                          ),
+                          borderRadius: 10,
+                        )
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: _PADDING_BOTTOM),
+                      child: Flexible(
+                        child: Text("${entry.tribute.quantity} x ${entry.tribute.item.name}",
+                        style: const TextStyle(
+                            fontSize: 22,
+                            color: Colors.black
+                            ),
+                        textAlign: TextAlign.center,
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            )
+          ),
+          const SizedBox(
+              height: 50,
+              child: Spacer()
+          ),
+          Card(
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(_PADDING_TITLE),
+                  child: Text(
+                      "Bonus du jour",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.grey.withOpacity(0.8)
+                      )
+                  ),
+                ),
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxHeight: 100
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(_PADDING_BOTTOM),
+                    child: Flexible(
+                      child: Text(
+                        entry.bonus.description,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 15
+                        )
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            )
           )
         ],
       );
