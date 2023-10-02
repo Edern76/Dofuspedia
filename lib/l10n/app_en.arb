@@ -1,0 +1,17 @@
+{
+  "navbar_almanax": "Almanax",
+  "navbar_items": "Items",
+  "navbar_breaking": "Breaking",
+  "navbar_settings": "Settings",
+
+  "general_error": "Error",
+  "general_tooltip_date": "Set date",
+
+  "almanax_loading": "Loading almanax...",
+  "almanax_tribute": "Daily tribute",
+  "almanax_bonus": "Daily bonus",
+
+  "settings_general": "General",
+  "settings_language": "Language",
+  "settings_language_choose": "Choose a language"
+}

@@ -2,6 +2,7 @@ import 'package:dofuspedia/datasources/dofusdude/almanax_source.dart';
 import 'package:dofuspedia/models/almanax_entry.dart';
 import 'package:dofuspedia/views/almanax_view.dart';
 import 'package:dofuspedia/views/components/rounded_image.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
@@ -90,6 +91,8 @@ class AlmanaxState extends State<AlmanaxPage> {
   }
 
   Widget _buildAlmanax(BuildContext context, AlmanaxEntry entry){
+    AppLocalizations t = AppLocalizations.of(context)!;
+
     return
       Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -102,7 +105,7 @@ class AlmanaxState extends State<AlmanaxPage> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.all(_PADDING_TITLE),
-                      child: Text("Offrande du jour",
+                      child: Text(t.almanax_tribute,
                           style: TextStyle(
                               fontSize: 18,
                               color: Colors.grey.withOpacity(0.8)
@@ -131,25 +134,40 @@ class AlmanaxState extends State<AlmanaxPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.only(bottom: _PADDING_BOTTOM),
-                      child: Flexible(
-                        child: Text("${entry.tribute.quantity} x ${entry.tribute.item.name}",
-                        style: const TextStyle(
-                            fontSize: 22,
-                            color: Colors.black
-                            ),
-                        textAlign: TextAlign.center,
+                        padding: const EdgeInsets.only(bottom: _PADDING_BOTTOM),
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(
+                              maxHeight: 100
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  "${entry.tribute.quantity} x ${entry.tribute.item.name}",
+                                  style: const TextStyle(
+                                    fontSize: 22,
+                                    color: Colors.black
+                                  ),
+                                textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    )
-                  ],
-                )
+                    ]
+                  ),
               ],
             )
           ),
           const SizedBox(
               height: 50,
-              child: Spacer()
+              child: Row(
+                children: [
+                  Spacer(),
+                ],
+              )
           ),
           Card(
             child: Column(
@@ -157,7 +175,7 @@ class AlmanaxState extends State<AlmanaxPage> {
                 Padding(
                   padding: const EdgeInsets.all(_PADDING_TITLE),
                   child: Text(
-                      "Bonus du jour",
+                      t.almanax_bonus,
                       style: TextStyle(
                           fontSize: 18,
                           color: Colors.grey.withOpacity(0.8)
@@ -170,14 +188,16 @@ class AlmanaxState extends State<AlmanaxPage> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(_PADDING_BOTTOM),
-                    child: Flexible(
-                      child: Text(
-                        entry.bonus.description,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 15
-                        )
-                      ),
+                    child: Row(
+                      children: [Flexible(
+                        child: Text(
+                          entry.bonus.description,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 15
+                          )
+                        ),
+                      )],
                     ),
                   ),
                 )
@@ -189,7 +209,9 @@ class AlmanaxState extends State<AlmanaxPage> {
   }
 
   Widget _buildLoading(BuildContext context){
-    return const Center(
+    AppLocalizations t = AppLocalizations.of(context)!;
+
+    return Center(
       // Center is a layout widget. It takes a single child and positions it
       // in the middle of the parent.
       child: Column(
@@ -197,7 +219,7 @@ class AlmanaxState extends State<AlmanaxPage> {
         children: <Widget>[
           CircularProgressIndicator(),
           Text(
-              "Chargement de l'almanax en cours..."
+              t.almanax_loading
           )
         ],
       ),

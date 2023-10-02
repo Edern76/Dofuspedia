@@ -1,0 +1,17 @@
+{
+  "navbar_almanax": "Almanax",
+  "navbar_items": "Objets",
+  "navbar_breaking": "Brisage",
+  "navbar_settings": "Paramètres",
+
+  "general_error": "Erreur",
+  "general_tooltip_date": "Changer la date",
+
+  "almanax_loading": "Chargement de l'almanax en cours...",
+  "almanax_tribute": "Offrande du jour",
+  "almanax_bonus": "Bonus du jour",
+
+  "settings_general": "Général",
+  "settings_language": "Langage",
+  "settings_language_choose": "Choisir un langage"
+}
