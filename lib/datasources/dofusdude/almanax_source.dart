@@ -1,4 +1,6 @@
+import 'package:dofuspedia/main.dart';
 import 'package:dofuspedia/models/almanax_entry.dart';
+import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';

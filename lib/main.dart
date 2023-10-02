@@ -27,7 +27,6 @@ void main() {
   runApp(const MyApp());
 }
 
-
 class MyAppState extends State<MyApp>{
   Locale locale = Locale("fr");
 
@@ -76,7 +75,7 @@ class MyAppState extends State<MyApp>{
           useMaterial3: true,
           textTheme: GoogleFonts.openSansTextTheme()
       ),
-      home: const MainView(),
+      home: MainView(),
     );
   }
 }

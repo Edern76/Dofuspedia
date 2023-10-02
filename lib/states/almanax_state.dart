@@ -1,4 +1,5 @@
 import 'package:dofuspedia/datasources/dofusdude/almanax_source.dart';
+import 'package:dofuspedia/main.dart';
 import 'package:dofuspedia/models/almanax_entry.dart';
 import 'package:dofuspedia/views/almanax_view.dart';
 import 'package:dofuspedia/views/components/rounded_image.dart';
@@ -8,11 +9,18 @@ import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 
 class AlmanaxState extends State<AlmanaxPage> {
+  late final MyAppState _myAppState;
   final AlmanaxSource _almanaxSource = GetIt.instance<AlmanaxSource>();
   static const double _PADDING_TITLE = 5.0;
   static const double _PADDING_BOTTOM = 8.0;
 
   DateTime _dateAlmanax = DateTime.now();
+
+  @override
+  void initState(){
+    super.initState();
+    _myAppState = context.findAncestorStateOfType<MyAppState>()!;
+  }
 
   Future<void> _changeDate(BuildContext context) async {
     DateTime? datePicked = await showDatePicker(context: context,
@@ -33,7 +41,7 @@ class AlmanaxState extends State<AlmanaxPage> {
   }
 
   Future<AlmanaxEntry> _getAlmanax() async{
-    AlmanaxEntry entry = await _almanaxSource.fetchAlmanax(_dateAlmanax);
+    AlmanaxEntry entry = await _almanaxSource.fetchAlmanax(_dateAlmanax, language: _myAppState.locale.languageCode);
     return entry;
   }
 
