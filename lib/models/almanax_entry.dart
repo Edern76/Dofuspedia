@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:dofuspedia/models/item_stub.dart';
+import 'package:dofuspedia/models/item/item_stub.dart';
 import 'package:intl/intl.dart';
 
 class AlmanaxEntry{
