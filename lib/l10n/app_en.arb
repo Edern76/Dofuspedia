@@ -11,6 +11,8 @@
   "almanax_tribute": "Daily tribute",
   "almanax_bonus": "Daily bonus",
 
+  "items_loading" : "Loading items...",
+
   "settings_general": "General",
   "settings_language": "Language",
   "settings_language_choose": "Choose a language"

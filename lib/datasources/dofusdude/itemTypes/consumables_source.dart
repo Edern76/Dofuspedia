@@ -10,6 +10,6 @@ import 'package:injectable/injectable.dart';
 class ConsumablesSource extends GenericItemSource implements ItemSourceInterface{
   @override
   Future<List<Item>> fetchItems({String language="fr"}) async {
-    return await doFetch("equipment", language: language);
+    return await doFetch("consumables", language: language);
   }
 }

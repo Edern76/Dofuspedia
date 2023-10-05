@@ -4,6 +4,7 @@ import 'package:dofuspedia/main.config.dart';
 import 'package:dofuspedia/utlis/constants.dart';
 import 'package:dofuspedia/views/almanax_view.dart';
 import 'package:dofuspedia/views/main_view.dart';
+import 'package:dofuspedia/repositories/item_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,11 +29,14 @@ void main() {
 }
 
 class MyAppState extends State<MyApp>{
-  Locale locale = Locale("fr");
+  ValueNotifier<Locale> locale = ValueNotifier<Locale>(Locale("fr"));
+  ItemRepository _itemRepository = GetIt.instance<ItemRepository>();
 
   @override
   void initState(){
     SharedPreferences.getInstance().then((prefs){
+      locale.addListener(() { _itemRepository.refreshItems(locale.value.languageCode);});
+
       Locale newLoc;
       String? localeName = prefs.getString("language");
       if (localeName != null){
@@ -46,12 +50,13 @@ class MyAppState extends State<MyApp>{
         newLoc = Locale(systemLocale);
       }
       changeLanguage(newLoc);
+      _itemRepository.refreshItems(newLoc.languageCode);
     });
   }
 
   changeLanguage(Locale loc){
     setState(() {
-      locale = loc;
+      locale = ValueNotifier<Locale>(loc); //TODO: Notify item list
     });
   }
 
@@ -69,7 +74,7 @@ class MyAppState extends State<MyApp>{
         Locale("fr"),
         Locale("en")
       ],
-      locale: locale,
+      locale: locale.value,
       theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightGreenAccent),
           useMaterial3: true,

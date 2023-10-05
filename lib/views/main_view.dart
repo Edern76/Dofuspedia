@@ -1,4 +1,5 @@
 import 'package:dofuspedia/views/almanax_view.dart';
+import 'package:dofuspedia/views/items_view.dart';
 import 'package:dofuspedia/views/settings_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,7 @@ class MainView extends StatelessWidget{
   List<Widget> _buildScreens(){
     return [
       const AlmanaxPage(title: "Dofuspedia"),
-      Container(),
+      const ItemsPage(title: "Dofuspedia"),
       Container(),
       const SettingsPage(title: "Dofuspedia"),
     ];

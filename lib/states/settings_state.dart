@@ -23,7 +23,7 @@ class SettingsState extends State<SettingsPage>{
   @override
   Widget build(BuildContext context){
     _myAppState = context.findAncestorStateOfType<MyAppState>()!;
-    _languageKey ??= _myAppState.locale.languageCode;
+    _languageKey ??= _myAppState.locale.value.languageCode;
     AppLocalizations t = AppLocalizations.of(context)!;
 
 

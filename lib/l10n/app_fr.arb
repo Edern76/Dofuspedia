@@ -11,6 +11,8 @@
   "almanax_tribute": "Offrande du jour",
   "almanax_bonus": "Bonus du jour",
 
+  "items_loading": "Chargement des objets...",
+
   "settings_general": "Général",
   "settings_language": "Langage",
   "settings_language_choose": "Choisir un langage"

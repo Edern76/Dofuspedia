@@ -41,7 +41,7 @@ class AlmanaxState extends State<AlmanaxPage> {
   }
 
   Future<AlmanaxEntry> _getAlmanax() async{
-    AlmanaxEntry entry = await _almanaxSource.fetchAlmanax(_dateAlmanax, language: _myAppState.locale.languageCode);
+    AlmanaxEntry entry = await _almanaxSource.fetchAlmanax(_dateAlmanax, language: _myAppState.locale.value.languageCode);
     return entry;
   }
 

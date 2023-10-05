@@ -34,7 +34,7 @@ class ItemsSource implements ItemSourceInterface{
     futureGroup.add(_resourcesSource.fetchItems(language: language));
 
     futureGroup.close(); //Run all queries in parallel
-    List<List<Item>> futureResult = await futureGroup.future as List<List<Item>>;
+    List<dynamic> futureResult = await futureGroup.future;
     futureResult.forEach((element) {result.addAll(element);});
     return result;
 

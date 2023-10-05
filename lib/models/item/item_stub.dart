@@ -18,7 +18,7 @@ class ItemStub{
     return ItemStub(ankamaId: json["ankama_id"],
         imageUrls: ImageUrls.fromJson(json["image_urls"]),
         name: utf8.decode(name.codeUnits),
-        subtype: json["subtype"]
+        subtype: json.containsKey("subtype") ? json["subtype"] : "Inconnu" //TODO: Recuperer subtype à partir du nom de la datasource
     );
   }
 }
